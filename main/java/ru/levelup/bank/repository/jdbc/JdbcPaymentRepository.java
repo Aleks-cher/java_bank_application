@@ -85,4 +85,9 @@ public class JdbcPaymentRepository implements PaymentRepository {
     public void changeStatus(int paymentId, String status) {
 
     }
+
+    @Override
+    public List<Payment> all() {
+        return null;
+    }
 }

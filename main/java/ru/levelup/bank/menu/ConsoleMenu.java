@@ -20,6 +20,9 @@ public class ConsoleMenu {
         System.out.println("1. Список всех компаний");
         System.out.println("2. Список всех клиентов");
         System.out.println("3. Получить информацию о клиенте");
+        System.out.println("4. Добавить компанию");
+        System.out.println("5. Поиск компании по ИНН");
+        System.out.println("6. Список всех счетов");
         System.out.println("0. Выход");
     }
 

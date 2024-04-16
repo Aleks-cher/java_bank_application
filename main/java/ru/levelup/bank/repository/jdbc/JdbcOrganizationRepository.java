@@ -85,6 +85,11 @@ public class JdbcOrganizationRepository implements OrganizationRepository {
 
     }
 
+    @Override
+    public Organization create(String name, String vatin) {
+        return null;
+    }
+
     private Organization map(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");

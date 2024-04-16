@@ -4,12 +4,13 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @AllArgsConstructor
 @Getter
 @ToString
-@Table(name = "accounts")
 @Entity
+@Table(name = "accounts")
 @NoArgsConstructor
 @Setter
 public class AccountEntity {
@@ -25,9 +26,9 @@ public class AccountEntity {
     @Column(name = "status")
     private String status;
     @Column(name = "open_datetime")
-    private Date open_datetime;
+    private Timestamp open_datetime;
     @Column(name = "bd_id")
-    private Long bdId;
+    private Long bd_id;
 
 
 //    @ManyToOne

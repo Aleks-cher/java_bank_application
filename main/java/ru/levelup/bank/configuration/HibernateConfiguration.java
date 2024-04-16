@@ -41,8 +41,8 @@ public class HibernateConfiguration {
 
         Configuration configuration = new Configuration()
                 .addAnnotatedClass(Customer.class)
-                .addAnnotatedClass(Organization.class);
-//                .addAnnotatedClass(AccountEntity.class);
+                .addAnnotatedClass(Organization.class)
+                .addAnnotatedClass(AccountEntity.class);
 
 
         factory = configuration.buildSessionFactory(registry);

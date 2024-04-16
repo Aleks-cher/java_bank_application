@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import ru.levelup.bank.domain.Customer;
 import ru.levelup.bank.domain.Organization;
 import ru.levelup.bank.repository.OrganizationRepository;
 
@@ -15,7 +16,10 @@ public class HibernateOrganizationRepository implements OrganizationRepository {
 
     @Override
     public List<Organization> all() {
-        return null;
+        try (Session session = factory.openSession()) {
+            return session.createQuery("from Organization", Organization.class)
+                    .list();
+        }
     }
 
     @Override
@@ -42,11 +46,32 @@ public class HibernateOrganizationRepository implements OrganizationRepository {
 
     @Override
     public Organization byVatin(String vatin) {
-        return null;
+        try (Session session = factory.openSession()) {
+            return session.createQuery("from Organization where vatin= :paramVatin", Organization.class)
+                    .setParameter("paramVatin", vatin)
+                    .uniqueResult();
+        }
     }
 
     @Override
     public List<Organization> byName(String name) {
         return null;
+    }
+
+    @Override
+    public Organization create(
+            String name,
+            String vatin) {
+        try (Session session = factory.openSession()) {
+            Transaction tx = session.beginTransaction();
+            Organization organization = new Organization(
+                    null,
+                    name,
+                    vatin
+            );
+            session.persist(organization);
+            tx.commit();
+            return organization;
+        }
     }
 }

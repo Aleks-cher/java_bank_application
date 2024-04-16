@@ -12,6 +12,7 @@ import java.util.List;
 @Getter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "customers")
 public class Customer {
@@ -33,10 +34,10 @@ public class Customer {
     @Column(name = "passport_number")
     private String passportNumber;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<AccountEntity> accountEntities;
-
-    public Customer(Integer id, long bankDocumentId, String firsName, String lastName, Date birthday, String passportSeria, String passportNumber) {
-
-    }
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<AccountEntity> accountEntities;
+//
+//    public Customer(Integer id, long bankDocumentId, String firsName, String lastName, Date birthday, String passportSeria, String passportNumber) {
+//
+//    }
 }
