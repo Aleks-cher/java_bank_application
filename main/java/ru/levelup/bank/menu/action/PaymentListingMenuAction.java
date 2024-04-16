@@ -19,6 +19,7 @@ public class PaymentListingMenuAction implements Action {
     @Override
     public void execute() {
         List<Payment> payments = paymentRepository.all();
-        payments.forEach(payment -> System.out.println(payments));
+
+        payments.forEach(payment -> System.out.println(payment));
     }
 }

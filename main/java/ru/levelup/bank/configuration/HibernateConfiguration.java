@@ -4,10 +4,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import ru.levelup.bank.domain.Account;
-import ru.levelup.bank.domain.AccountEntity;
-import ru.levelup.bank.domain.Customer;
-import ru.levelup.bank.domain.Organization;
+import ru.levelup.bank.domain.*;
 
 import java.util.Properties;
 
@@ -42,7 +39,8 @@ public class HibernateConfiguration {
         Configuration configuration = new Configuration()
                 .addAnnotatedClass(Customer.class)
                 .addAnnotatedClass(Organization.class)
-                .addAnnotatedClass(AccountEntity.class);
+                .addAnnotatedClass(AccountEntity.class)
+                .addAnnotatedClass(Payment.class);
 
 
         factory = configuration.buildSessionFactory(registry);

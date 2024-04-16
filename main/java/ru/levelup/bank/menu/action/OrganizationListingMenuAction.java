@@ -19,6 +19,7 @@ public class OrganizationListingMenuAction implements Action {
     @Override
     public void execute() {
         List<Organization> organizations = organizationRepository.all();
-        organizations.forEach(organization -> System.out.println(organizations));
+
+        organizations.forEach(organization -> System.out.println(organization));
     }
 }

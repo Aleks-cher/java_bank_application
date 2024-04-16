@@ -4,13 +4,14 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.sql.Date;
-@Setter
+
 @Getter
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "payments")
+@Setter
 public class Payment {
 
     @Id
