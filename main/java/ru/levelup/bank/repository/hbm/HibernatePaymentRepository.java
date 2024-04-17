@@ -9,14 +9,16 @@ import ru.levelup.bank.domain.Payment;
 import ru.levelup.bank.domain.PaymentStatus;
 import ru.levelup.bank.repository.PaymentRepository;
 
+import java.math.BigDecimal;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 @RequiredArgsConstructor
 public class HibernatePaymentRepository implements PaymentRepository {
 
     private final SessionFactory factory;
     @Override
-    public Payment createPayment(Date date, double amount, int accountFrom, int accountTo, String paymentStatus) {
+    public Payment createPayment(Timestamp date, BigDecimal amount, int accountFrom, int accountTo, String paymentStatus) {
         return null;
     }
 

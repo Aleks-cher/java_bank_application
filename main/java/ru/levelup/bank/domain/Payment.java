@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.sql.Date;
 
+
 @Getter
 @ToString
 @NoArgsConstructor
@@ -19,9 +20,9 @@ public class Payment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(name = "date")
-    private Date date;
+    private java.sql.Timestamp date;
     @Column(name = "amount")
-    private double amount;
+    private java.math.BigDecimal amount;
     @Column(name = "account_from")
     private int accountFrom;
     @Column(name = "account_to")

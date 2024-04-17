@@ -7,8 +7,10 @@ import ru.levelup.bank.domain.PaymentStatus;
 import ru.levelup.bank.jdbc.JdbcConnectionManager;
 import ru.levelup.bank.repository.PaymentRepository;
 
+import java.math.BigDecimal;
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +20,13 @@ public class JdbcPaymentRepository implements PaymentRepository {
     private final JdbcConnectionManager cm;
 
     @Override
-    public Payment createPayment(Date date, double amount, int accountFrom, int accountTo, String paymentStatus) {
+    public Payment createPayment(Timestamp date, BigDecimal amount, int accountFrom, int accountTo, String paymentStatus) {
         try (Connection conn = cm.openConnection()) {
             PreparedStatement stmt = conn.prepareStatement("insert into payments (date, amount, account_from, account_to, status) values (?, ?, ?, ?, ?)",
                     Statement.RETURN_GENERATED_KEYS
             );
-            stmt.setDate(1, Date.valueOf(LocalDate.now()));
-            stmt.setDouble(2, amount);
+            stmt.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+            stmt.setBigDecimal(2, amount);
             stmt.setInt(3, accountFrom);
             stmt.setInt(4, accountTo);
             stmt.setString(5, paymentStatus.toString());
@@ -35,7 +37,7 @@ public class JdbcPaymentRepository implements PaymentRepository {
             rs.next();
             int generratedPaymentId = rs.getInt(1);
 
-            return new Payment(generratedPaymentId, Date.valueOf(LocalDate.now()), amount, accountFrom, accountTo, paymentStatus);
+            return new Payment(generratedPaymentId, Timestamp.valueOf(LocalDateTime.now()), amount, accountFrom, accountTo, paymentStatus);
 
         } catch (SQLException exc) {
             throw new RuntimeException(exc);
