@@ -10,7 +10,9 @@ import java.sql.Date;
 import java.util.List;
 
 @Getter
-@ToString
+@ToString(
+        exclude = "accountEntities"
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -34,10 +36,21 @@ public class Customer {
     @Column(name = "passport_number")
     private String passportNumber;
 
+    // customer главная таблица
+
+    // !!! если не хочу что бы в кастомер попали аккаунты то в аннотацию ту стринг прописывасывает эхклюд и ставим LAZY
+    // если ходим выводить аккаунты то в ту стринге пусто и в fetch = FetchType.EAGER
+
+    @OneToMany(
+            mappedBy = "customer",
+            fetch = FetchType.LAZY
+    )
+    private List<AccountEntity> accountEntities;
+
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<AccountEntity> accountEntities;
 //
-//    public Customer(Integer id, long bankDocumentId, String firsName, String lastName, Date birthday, String passportSeria, String passportNumber) {
-//
-//    }
+    public Customer(Integer id, long bankDocumentId, String firsName, String lastName, Date birthday, String passportSeria, String passportNumber) {
+
+    }
 }

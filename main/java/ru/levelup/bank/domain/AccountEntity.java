@@ -5,10 +5,13 @@ import lombok.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
-@ToString
+@ToString(
+        exclude = "customer"
+)
 @Entity
 @Table(name = "accounts")
 @NoArgsConstructor
@@ -27,8 +30,20 @@ public class AccountEntity {
     private String status;
     @Column(name = "open_datetime")
     private Timestamp open_datetime;
-    @Column(name = "bd_id")
-    private Long bd_id;
+//    @Column(name = "bd_id")
+//    private Long bd_id;
+    @ManyToOne
+    @JoinColumn(
+            name = "bd_id",
+            referencedColumnName = "bank_document_id"
+    )
+    private Customer customer;
+
+//    @OneToMany (mappedBy = "accountFrom")
+//    private Payment payment;
+
+
+
 
 
 //    @ManyToOne

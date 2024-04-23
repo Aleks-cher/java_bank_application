@@ -24,6 +24,10 @@ public class MenuActions {
         ACTION_MAP.put(4, new OrganizationCreateMenuAction());
         ACTION_MAP.put(5, new OrganizationByVatinMenuAction());
         ACTION_MAP.put(6, new PaymentListingMenuAction());
+        ACTION_MAP.put(7, new AccountListingMenuAction());
+        ACTION_MAP.put(8, new AccountCreateMenuAction());
+        ACTION_MAP.put(9, new PaymentCreateMenuAction());
+        ACTION_MAP.put(10, new PaymentByAccountIdMenuAction());
     }
 
 //    public static Action getAction(int actionCode) {

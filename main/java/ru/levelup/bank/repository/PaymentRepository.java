@@ -1,11 +1,11 @@
 package ru.levelup.bank.repository;
 
 import ru.levelup.bank.domain.Account;
+import ru.levelup.bank.domain.AccountEntity;
 import ru.levelup.bank.domain.Payment;
 import ru.levelup.bank.domain.PaymentStatus;
 
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -15,8 +15,8 @@ public interface PaymentRepository {
 
             Timestamp date,
             BigDecimal amount,
-            int accountFrom,
-            int accountTo,
+            AccountEntity accountEntity1,
+            AccountEntity accountEntity2,
             String paymentStatus
     );
 
@@ -26,4 +26,6 @@ public interface PaymentRepository {
     void changeStatus(int paymentId, String status);
 
     List<Payment> all();
+
+    List<Payment> byAccountId(AccountEntity accountId);
 }

@@ -2,12 +2,14 @@ package ru.levelup.bank.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.sql.Date;
+import org.hibernate.annotations.ColumnTransformer;
+import org.hibernate.annotations.Type;
 
 
 @Getter
-@ToString
+@ToString(
+        exclude = {"accountFrom","accountTo"}
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -23,11 +25,27 @@ public class Payment {
     private java.sql.Timestamp date;
     @Column(name = "amount")
     private java.math.BigDecimal amount;
-    @Column(name = "account_from")
-    private int accountFrom;
-    @Column(name = "account_to")
-    private int accountTo;
-    @Column(name = "status")
-    private String paymentStatus;
 
+    @ManyToOne
+    @JoinColumn(
+            name = "account_from",
+            referencedColumnName = "id"
+    )
+    private AccountEntity accountFrom;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "account_to",
+            referencedColumnName = "id"
+    )
+    private AccountEntity accountTo;
+
+    @Column(name = "status",columnDefinition = "ENUM('NEW', 'CONFIRMED', 'DONE', 'FAILED')")
+    @ColumnTransformer(write="?::payment_status")
+    @Enumerated(EnumType.STRING)
+    private PaymentStatus paymentStatus;
+
+
+    //@Column(name = "account_from")
+    //@Column(name = "account_to")
 }

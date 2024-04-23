@@ -18,7 +18,7 @@ public enum PaymentStatus {
         return sqlCode;
     }
 
-    public PaymentStatus findEnumOrNull(String s) {
+    public static PaymentStatus findEnumOrNull(String s) {
         for (PaymentStatus status: values()) {
             if (status.name().equals(s.toUpperCase())) {
                 return status;
