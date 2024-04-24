@@ -1,5 +1,6 @@
 package ru.levelup.bank.repository;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import ru.levelup.bank.domain.Organization;
 
 import java.util.List;
@@ -18,5 +19,7 @@ public interface OrganizationRepository {
         String name,
         String vatin
     );
+
+    void assignCustomerOrganization(Integer organizationID, Integer customerID);
 
 }

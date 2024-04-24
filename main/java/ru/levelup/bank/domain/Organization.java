@@ -3,9 +3,14 @@ package ru.levelup.bank.domain;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Collections;
+import java.util.List;
+
 @Setter
 @Getter
-@ToString
+@ToString(
+        exclude = "customers"
+)
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
@@ -21,4 +26,17 @@ public class Organization {
     @Column(name = "vatin")
     private String vatin; // ИНН
 
+    @ManyToMany(
+            fetch = FetchType.EAGER,
+            mappedBy = "organizations",
+            cascade = CascadeType.ALL
+    )
+    private List<Customer> customers;
+
+    public Organization(Integer id, String name, String vatin) {
+        this.id = id;
+        this.name = name;
+        this.vatin = vatin;
+        this.customers = Collections.emptyList();
+    }
 }

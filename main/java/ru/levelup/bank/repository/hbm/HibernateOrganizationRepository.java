@@ -74,4 +74,28 @@ public class HibernateOrganizationRepository implements OrganizationRepository {
             return organization;
         }
     }
+
+    @Override
+    public void assignCustomerOrganization(Integer organizationID, Integer customerID) {
+        try (Session session = factory.openSession()) {
+            Transaction tx = session.beginTransaction();
+
+            // 1 var
+//            Organization organization = session.get(Organization.class, organizationID);
+//            Customer customer = session.get(Customer.class, customerID);
+//
+//            customer.getOrganizations().add(organization);
+
+            // 2 var
+            Organization organization = session.getReference(Organization.class, organizationID);
+            Customer customer = session.get(Customer.class, customerID);
+
+            customer.getOrganizations().add(organization);
+
+            tx.commit();
+        }
+
+
+
+    }
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @ToString(
-        exclude = "accountEntities"
+        exclude = {"accountEntities", "organizations"}
 )
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,6 +46,14 @@ public class Customer {
             fetch = FetchType.LAZY
     )
     private List<AccountEntity> accountEntities;
+
+    @ManyToMany
+    @JoinTable(
+            name = "customers_and_organization",
+            joinColumns = @JoinColumn(name = "customer_id"),
+            inverseJoinColumns = @JoinColumn(name = "organization_id")
+    )
+    private List<Organization> organizations;
 
 //    @OneToMany(fetch = FetchType.LAZY)
 //    private List<AccountEntity> accountEntities;

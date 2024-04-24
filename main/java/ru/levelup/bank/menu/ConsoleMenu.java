@@ -28,6 +28,7 @@ public class ConsoleMenu {
         System.out.println("8. Добавить новый счет");
         System.out.println("9. Добавить новый платеж");
         System.out.println("10. Поиск платежей по ID счета");
+        System.out.println("11. Привязать клиента к компании");
         System.out.println("0. Выход");
     }
 

@@ -90,6 +90,21 @@ public class JdbcOrganizationRepository implements OrganizationRepository {
         return null;
     }
 
+    @Override
+    public void assignCustomerOrganization(Integer organizationID, Integer customerID) {
+        try (Connection conn = cm.openConnection()) {
+
+            PreparedStatement stmt = conn.prepareStatement("insert into customers_and_organization values (?, ?)");
+            stmt.setInt(1, customerID);
+            stmt.setInt(2, organizationID);
+
+            stmt.executeUpdate();
+
+        } catch (SQLException exc) {
+            throw new RuntimeException(exc);
+        }
+    }
+
     private Organization map(ResultSet rs) throws SQLException {
         int id = rs.getInt("id");
         String name = rs.getString("name");

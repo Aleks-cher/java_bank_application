@@ -28,6 +28,7 @@ public class MenuActions {
         ACTION_MAP.put(8, new AccountCreateMenuAction());
         ACTION_MAP.put(9, new PaymentCreateMenuAction());
         ACTION_MAP.put(10, new PaymentByAccountIdMenuAction());
+        ACTION_MAP.put(11, new AssignCustomerToOrganizationMenuAction());
     }
 
 //    public static Action getAction(int actionCode) {
